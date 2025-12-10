@@ -2,14 +2,19 @@ package org.example;
 
 public class Main {
     public static void main(String[] args) {
-        if (args.length == 0) {
+        if (args.length < 2) {
             System.out.println("Usage: ");
             System.out.println(" broadcast-server start");
             System.out.println(" broadcast-server connect");
             return;
         }
 
-        switch (args[0]) {
+        if (!args[0].equals("broadcast-server")) {
+            System.out.println("Unknown command: " + args[0]);
+            return;
+        }
+
+        switch (args[1]) {
             case "start":
                 Server.start();
                 break;
@@ -17,7 +22,7 @@ public class Main {
                 Client.connect();
                 break;
             default:
-                System.out.println("Unkown command: " + args[0]);
+                System.out.println("Unknown option: " + args[1]);
         }
     }
 }
